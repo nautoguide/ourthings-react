@@ -1,0 +1,26 @@
+{
+  "name": "@nautoguide/ourthings-react",
+  "version": "0.1.0",
+  "description": "Queue based JavaScript framework",
+  "scripts": {
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nautoguide/ourthings-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nautoguide/ourthings-react/issues"
+  },
+  "license": "MIT",
+  "devDependencies": {
+  },
+  "dependencies": {
+    "uuid": "^7.0.3",
+    "js-base64": "^3.6.0",
+    "@nautoguide/aws-wsp": "^1.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
