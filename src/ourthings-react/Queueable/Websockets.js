@@ -50,17 +50,7 @@ export default class Websockets extends Queueable {
 		}
 
 		self.ws.onMessage = function (jsonData) {
-			let stack = [];
-			/*
-			 * We push data to the stack for anyone using stack mode
-			 */
-			if (memory[`wsStack_${jsonData[options.queue]}`])
-				stack = memory[`wsStack_${jsonData[options.queue]}`].value;
-			stack.push(jsonData);
-			self.queue.setMemory(`wsStack_${jsonData[options.queue]}`, stack, self.queue.DEFINE.MEMORY_SESSION);
-			/*
-			 * Set our normal memory (not multiple thread safe)
-			 */
+
 			self.queue.setMemory(jsonData[options.queue], jsonData, self.queue.DEFINE.MEMORY_SESSION);
 			self.queue.setMemory('wsLastRecv', jsonData, self.queue.DEFINE.MEMORY_SESSION);
 
@@ -110,15 +100,6 @@ export default class Websockets extends Queueable {
 
 	}
 
-	websocketPop(pid, json) {
-		let options = Object.assign({
-			"prefix": "ws://localhost",
-			"queue": "queue",
-			"queues": {}
-		}, json);
-		this.queue.setStack(pid, options.queue, memory[`wsStack_${json.queue}`].value.pop());
-		this.finished(pid, self.queue.DEFINE.FIN_OK);
-	}
 
 	/**
 	 * Send a json message down the websocket

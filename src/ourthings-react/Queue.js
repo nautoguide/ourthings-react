@@ -752,7 +752,9 @@ class Queue {
 	 * @return {any}
 	 */
 	deepCopy(inputObject) {
-		return JSON.parse(JSON.stringify(inputObject));
+		return Object.assign({}, inputObject);
+
+		//return JSON.parse(JSON.stringify(inputObject));
 	}
 
 	/**
