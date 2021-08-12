@@ -46,6 +46,7 @@ export default class Websockets extends Queueable {
 		self.ws=new wspClient();
 
 		self.ws.onOpen = function() {
+			self.queue.setRegister('wsActive');
 			self.finished(pid, self.queue.DEFINE.FIN_OK);
 		}
 
